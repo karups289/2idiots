@@ -28,8 +28,8 @@ public class RuleListActivity extends Activity {
         ruleListView.setAdapter(ruleAdapter);
         
         
-        RuleTrackerOpenHelper ruleTrackerOpenHelper = new RuleTrackerOpenHelper(this);
-        ruleTrackerOpenHelper.getWritableDatabase();
+        //RuleTrackerOpenHelper ruleTrackerOpenHelper = new RuleTrackerOpenHelper(this);
+        //ruleTrackerOpenHelper.getWritableDatabase();
         
         
     }
