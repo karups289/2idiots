@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_header_selector"
+    android:orientation="vertical" >
+    
+    <LinearLayout android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1"
+	    android:orientation="vertical" >
+	    <TextView android:text="Rule"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#FF000000"
+			android:layout_marginTop="10dp" />
+		<EditText android:id="@+id/ruleName"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#FF000000"
+			android:layout_marginBottom="10dp" />
+		
+		<TextView android:text="Trigger"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#FF000000"
+			android:layout_marginTop="10dp" />
+		<EditText android:id="@+id/ruleTrigger"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp" />
+		
+		<TextView android:text="Action"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#FF000000"
+			android:layout_marginTop="10dp" />
+		<EditText android:id="@+id/ruleAction"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp" />
+	</LinearLayout>
+	<RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="bottom"
+		    android:layout_weight="0"
+			android:layout_gravity="bottom"
+			android:background="@drawable/main_header_selector"
+		    android:orientation="horizontal" >
+
+		<Button
+		    android:id="@+id/btnRuleSave"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/btn_lightblue_glossy"
+		    android:onClick="onSave"
+		    android:text="@string/btnRuleSave" />
+
+		<Button
+		    android:id="@+id/btnRuleCancel"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:background="@drawable/btn_lightblue_glossy"
+		    android:onClick="onCancel"
+		    android:text="@string/btnRuleCancel" />
+	    
+	</RelativeLayout>
+	
+</LinearLayout>

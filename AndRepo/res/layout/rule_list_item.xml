@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:background="@drawable/main_header_selector"
+        android:orientation="vertical"
+        android:layout_height="fill_parent" >
+		<TextView
+        android:id="@+id/txtRuleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+		<RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="match_parent"
+		    android:gravity="center_horizontal"
+			android:layout_gravity="fill"
+		    android:orientation="horizontal" >
+
+		             <TextView
+		                 android:id="@+id/txtRuleTrigger"
+		                 android:layout_width="wrap_content"
+		                 android:layout_height="wrap_content"
+		                 android:text="Small Text"
+		                 android:textColor="@color/black"/>
+
+		             <TextView
+		                 android:id="@+id/txtruleAction"
+		                 android:layout_width="wrap_content"
+		                 android:layout_height="wrap_content"
+		                 android:layout_alignParentRight="true"
+		                 android:text="Small Text"
+		                 android:textColor="@color/black"/>
+		</RelativeLayout>
+    </LinearLayout>
