@@ -9,11 +9,14 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.eshiah.adapter.RuleAdapter;
+import com.eshiah.adapter.RuleDbAdapter;
 import com.eshiah.core.RuleRecord;
-import com.eshiah.db.RuleTrackerOpenHelper;
+import com.eshiah.db.RuleListDatabaseHelper;
 
 public class RuleListActivity extends Activity {
 	RuleAdapter ruleAdapter;
+	RuleListDatabaseHelper ruleListDatabaseHelper;
+	RuleDbAdapter ruleDbAdapter;
 	public static final int RULE_ENTRY_REQUEST_CODE = 1;
 	
 	
@@ -22,13 +25,14 @@ public class RuleListActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+        ruleListDatabaseHelper = new RuleListDatabaseHelper(this);
         ListView ruleListView=(ListView)findViewById(R.id.rule_list);
         ruleAdapter = new RuleAdapter();
-        ruleListView.setAdapter(ruleAdapter);
+        ruleDbAdapter = new RuleDbAdapter(this,ruleListDatabaseHelper.getAllRuleRecords());
+        ruleListView.setAdapter(ruleDbAdapter);
         
         
-        //RuleTrackerOpenHelper ruleTrackerOpenHelper = new RuleTrackerOpenHelper(this);
+        
         //ruleTrackerOpenHelper.getWritableDatabase();
         
         
@@ -58,8 +62,11 @@ public class RuleListActivity extends Activity {
     			String ruleName = data.getStringExtra("RuleName");
     			String ruleTrigger = data.getStringExtra("RuleTrigger");
     			String ruleAction = data.getStringExtra("RuleAction");
-    			ruleAdapter.addRuleRecord(new RuleRecord(ruleName,ruleTrigger,ruleAction));
-    			ruleAdapter.notifyDataSetChanged();
+    			
+    			ruleListDatabaseHelper.saveRuleRecord(ruleName, ruleTrigger, ruleAction);
+    			ruleDbAdapter.changeCursor(ruleListDatabaseHelper.getAllRuleRecords());
+    			//ruleAdapter.addRuleRecord(new RuleRecord(ruleName,ruleTrigger,ruleAction));
+    			//ruleAdapter.notifyDataSetChanged();
     		}
     	}
     }
