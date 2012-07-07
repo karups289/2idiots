@@ -44,6 +44,19 @@ public class RuleListDatabaseHelper {
 		contentValues.put(RULETRACKER_COLUMN_RULEACTION, ruleAction);
 		database.insert(TABLE_NAME, null, contentValues);
 	}
+	
+	public void updateRuleRecord(String mRowId,String ruleName,String ruleTrigger, String ruleAction) {
+		//database.execSQL("INSERT INTO "+TABLE_NAME
+		//+ " (rulename, ruletrigger,ruleaction)"
+		//+ " VALUES ('" + ruleName + "', '" + ruleTrigger + "', '" + ruleAction + "')"
+		//);
+		
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(RULETRACKER_COLUMN_RULENAME, ruleName);
+		contentValues.put(RULETRACKER_COLUMN_RULETRIGGER, ruleTrigger);
+		contentValues.put(RULETRACKER_COLUMN_RULEACTION, ruleAction);
+		database.update(TABLE_NAME, contentValues, RULETRACKER_COLUMN_ID + "=" + mRowId, null);
+	}
 	public Cursor getAllRuleRecords() {
 		return database.rawQuery(
 		"select * from " + TABLE_NAME,

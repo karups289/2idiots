@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.eshiah.adapter.RuleAdapter;
 import com.eshiah.adapter.RuleDbAdapter;
@@ -21,7 +23,7 @@ public class RuleListActivity extends Activity {
 	RuleListDatabaseHelper ruleListDatabaseHelper;
 	RuleDbAdapter ruleDbAdapter;
 	public static final int RULE_ENTRY_REQUEST_CODE = 1;
-	public static final int RULE_EDIT_REQUEST_CODE = 1;
+	public static final int RULE_EDIT_REQUEST_CODE = 2;
 	
 	
     /** Called when the activity is first created. */
@@ -50,7 +52,8 @@ public class RuleListActivity extends Activity {
         		Cursor navCursor = ruleListDatabaseHelper.getAllRuleRecords();
         		navCursor.moveToPosition(position);
         		Intent i = new Intent(parent.getContext(), AddRuleActivity.class);
-                i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_ID, id);
+                i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_ID, navCursor.getString(
+                		navCursor.getColumnIndexOrThrow(RuleListDatabaseHelper.RULETRACKER_COLUMN_ID)));
                 i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULENAME, navCursor.getString(
                 		navCursor.getColumnIndexOrThrow(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULENAME)));
                 i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULETRIGGER, navCursor.getString(
@@ -82,6 +85,7 @@ public class RuleListActivity extends Activity {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     	if (requestCode == RULE_ENTRY_REQUEST_CODE) {
     		if (resultCode == RESULT_OK) {
     			String ruleName = data.getStringExtra("RuleName");
@@ -89,6 +93,19 @@ public class RuleListActivity extends Activity {
     			String ruleAction = data.getStringExtra("RuleAction");
     			
     			ruleListDatabaseHelper.saveRuleRecord(ruleName, ruleTrigger, ruleAction);
+    			ruleDbAdapter.changeCursor(ruleListDatabaseHelper.getAllRuleRecords());
+    			//ruleAdapter.addRuleRecord(new RuleRecord(ruleName,ruleTrigger,ruleAction));
+    			//ruleAdapter.notifyDataSetChanged();
+    		}
+    	}
+    	if (requestCode == RULE_EDIT_REQUEST_CODE) {
+    		
+    		if (resultCode == RESULT_OK ) {
+    			String ruleName = data.getStringExtra("RuleName");
+    			String ruleTrigger = data.getStringExtra("RuleTrigger");
+    			String ruleAction = data.getStringExtra("RuleAction");
+    			Toast.makeText(getApplicationContext(),"going to update:"+data.getStringExtra("mRowId"),Toast.LENGTH_LONG).show();
+    			ruleListDatabaseHelper.updateRuleRecord(data.getStringExtra("RuleId"),ruleName, ruleTrigger, ruleAction);
     			ruleDbAdapter.changeCursor(ruleListDatabaseHelper.getAllRuleRecords());
     			//ruleAdapter.addRuleRecord(new RuleRecord(ruleName,ruleTrigger,ruleAction));
     			//ruleAdapter.notifyDataSetChanged();
