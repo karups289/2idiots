@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,12 +13,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.eshiah.adapter.RuleAdapter;
 import com.eshiah.adapter.RuleDbAdapter;
 import com.eshiah.db.RuleListDatabaseHelper;
 
 public class RuleListActivity extends Activity {
-	RuleAdapter ruleAdapter;
+
 	RuleListDatabaseHelper ruleListDatabaseHelper;
 	RuleDbAdapter ruleDbAdapter;
 	public static final int RULE_ENTRY_REQUEST_CODE = 1;
@@ -33,7 +31,7 @@ public class RuleListActivity extends Activity {
         setContentView(R.layout.main);
         ruleListDatabaseHelper = new RuleListDatabaseHelper(this);
         ListView ruleListView=(ListView)findViewById(R.id.rule_list);
-        ruleAdapter = new RuleAdapter();
+
         ruleDbAdapter = new RuleDbAdapter(this,ruleListDatabaseHelper.getAllRuleRecords());
         ruleListView.setAdapter(ruleDbAdapter);
         
