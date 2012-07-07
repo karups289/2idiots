@@ -2,15 +2,18 @@ package com.eshiah.base;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.eshiah.adapter.RuleAdapter;
 import com.eshiah.adapter.RuleDbAdapter;
-import com.eshiah.core.RuleRecord;
 import com.eshiah.db.RuleListDatabaseHelper;
 
 public class RuleListActivity extends Activity {
@@ -18,6 +21,7 @@ public class RuleListActivity extends Activity {
 	RuleListDatabaseHelper ruleListDatabaseHelper;
 	RuleDbAdapter ruleDbAdapter;
 	public static final int RULE_ENTRY_REQUEST_CODE = 1;
+	public static final int RULE_EDIT_REQUEST_CODE = 1;
 	
 	
     /** Called when the activity is first created. */
@@ -35,6 +39,27 @@ public class RuleListActivity extends Activity {
         
         //ruleTrackerOpenHelper.getWritableDatabase();
         
+        
+        ruleListView.setOnItemClickListener(new OnItemClickListener() {
+        	@Override
+        	public void onItemClick(AdapterView<?> parent, View view,
+        		int position, long id) {
+        		//Toast.makeText(getApplicationContext(),
+        		//	"Click ListItem Number " + position, Toast.LENGTH_LONG)
+        		//	.show();
+        		Cursor navCursor = ruleListDatabaseHelper.getAllRuleRecords();
+        		navCursor.moveToPosition(position);
+        		Intent i = new Intent(parent.getContext(), AddRuleActivity.class);
+                i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_ID, id);
+                i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULENAME, navCursor.getString(
+                		navCursor.getColumnIndexOrThrow(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULENAME)));
+                i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULETRIGGER, navCursor.getString(
+                		navCursor.getColumnIndexOrThrow(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULETRIGGER)));
+                i.putExtra(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULEACTION, navCursor.getString(
+                		navCursor.getColumnIndexOrThrow(RuleListDatabaseHelper.RULETRACKER_COLUMN_RULEACTION)));
+                startActivityForResult(i, RULE_EDIT_REQUEST_CODE);
+        	}
+        });
         
     }
     @Override
@@ -71,4 +96,6 @@ public class RuleListActivity extends Activity {
     	}
     }
     
+    
+   
 }
