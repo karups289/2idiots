@@ -24,6 +24,8 @@
             android:label="@string/strnewrule" >
 
         </activity>
+        
+        <service android:enabled="true" android:name="com.eshiah.exec.MyAppService" />
     </application>
 
 </manifest>

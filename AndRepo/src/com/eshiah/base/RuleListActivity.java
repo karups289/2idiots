@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.eshiah.adapter.RuleDbAdapter;
 import com.eshiah.db.RuleListDatabaseHelper;
+import com.eshiah.exec.MyAppService;
 
 public class RuleListActivity extends Activity {
 
@@ -34,7 +35,7 @@ public class RuleListActivity extends Activity {
 
         ruleDbAdapter = new RuleDbAdapter(this,ruleListDatabaseHelper.getAllRuleRecords());
         ruleListView.setAdapter(ruleDbAdapter);
-        
+        startService(new Intent(this, MyAppService.class));
         
         
         //ruleTrackerOpenHelper.getWritableDatabase();
