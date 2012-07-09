@@ -25,7 +25,7 @@
 
         </activity>
         
-        <service android:enabled="true" android:name="com.eshiah.exec.MyAppService" />
+        <service android:enabled="true" android:name="com.eshiah.exec.MyAppTimeServicevice" />
     </application>
 
 </manifest>
