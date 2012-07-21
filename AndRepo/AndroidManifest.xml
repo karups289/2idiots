@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="10" />
-
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/stryourrule" >
@@ -25,7 +25,10 @@
 
         </activity>
         
+
         <service android:enabled="true" android:name="com.eshiah.exec.MyAppTimeServicevice" />
+
+        
     </application>
 
 </manifest>
