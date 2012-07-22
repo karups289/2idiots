@@ -1,3 +1,4 @@
 
 /AndRepo/gen/com/*
 /AndRepo/bin/*
+*.properties
