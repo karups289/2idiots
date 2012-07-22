@@ -3,12 +3,17 @@
 
     <string name="hello">Hello World, SplashActivity!</string>
     <string name="app_name">My App</string>
-    <string name="btnRuleSave">Save</string>
+    <string name="btnRuleSave">SAVE</string>
+    <string name="btnRuleSel">SELECT</string>
     <string name="btnRuleCancel">Cancel</string>
     <string name="stryourrule">My App</string>
-	<string name="strnewrule">Add New Rule</string>
-	<string name="service_name">MyApp Service</string>
-    
+	<string name="strnewrule">**** CREATE YOUR RULE HERE ****</string>
+	<string name="strRulType">SELECT RULE TYPE</string>
+	<string name="strRuleName">ENTER RULE NAME HERE</string>
+	<string name="selCategory">Select your trigger category</string>
+    <string name="strRuleLabel">Rule Name</string>
+    <string name="btnRulePop">Select Rule</string>
+    <string name="strRuleActPeriod">Rule Active </string>
     
     
     <style name="buttonText">
@@ -25,4 +30,15 @@
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">15dp</item>
     </style>
+    
+    <string-array name="planets_array">
+        <item>Towards</item>
+        <item>Away</item>
+    </string-array>
+        <string-array name="trig_action">
+        <item>Show Notification</item>
+        <item>Switch on Wifi</item>
+        <item>Vibrate</item>
+        <item>Play music</item>
+    </string-array>
 </resources>

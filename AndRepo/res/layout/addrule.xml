@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_header_selector"
@@ -14,6 +14,7 @@
 			android:layout_height="wrap_content"
 			android:textColor="#FF000000"
 			android:layout_marginTop="10dp" />
+	    	
 		<EditText android:id="@+id/ruleName"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -39,11 +40,6 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="10dp" />
-		<EditText android:id="@+id/ruleid"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:visibility="invisible"
-			android:layout_marginBottom="10dp" />
 	</LinearLayout>
 	<RelativeLayout
 		    android:layout_width="fill_parent"
@@ -59,7 +55,6 @@
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:background="@drawable/btn_lightblue_glossy"
-		    android:onClick="onSave"
 		    android:text="@string/btnRuleSave" />
 
 		<Button
@@ -68,9 +63,188 @@
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentRight="true"
 		    android:background="@drawable/btn_lightblue_glossy"
-		    android:onClick="onCancel"
 		    android:text="@string/btnRuleCancel" />
 	    
 	</RelativeLayout>
 	
-</LinearLayout>
+</LinearLayout> -->
+
+<!-- Ranjith:Commented out the prev layout -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<!-- Text view to display the textbox name -->
+	
+	   <TextView android:id="@+id/ruleLabel"
+	        android:text="@string/strRuleLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#FF000000"
+			android:layout_marginTop="10dp" 
+			android:layout_alignParentTop="true"
+			android:layout_alignParentLeft="true"
+			/>
+	    		
+	
+	<!-- Text field to enter the name of the rule -->
+	
+	<EditText android:id="@+id/ruleName"
+	    	android:hint="@string/strRuleName"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#FF000000"
+			android:layout_marginBottom="10dp" 
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/ruleLabel"
+			android:layout_alignLeft="@+id/ruleLabel"
+			/>
+	  <TextView android:id="@+id/rulNamValidate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/ruleName"
+			android:layout_alignLeft="@+id/ruleLabel"
+			/>
+	
+	
+	<EditText android:id="@+id/ruleType"
+	    	android:hint="@string/strRulType"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#FF000000"
+			android:layout_marginBottom="10dp" 
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/rulNamValidate"
+			android:layout_alignLeft="@+id/ruleLabel"
+			/>
+	<Button
+		    android:id="@+id/btnRuleSel"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/btn_lightblue_glossy"
+		    android:text="@string/btnRuleSel" 
+		    android:layout_marginBottom="10dp" 
+			android:layout_marginTop="5dp"
+			android:layout_toRightOf="@+id/ruleType"
+			android:layout_below="@+id/rulNamValidate"
+		    />
+	  <TextView android:id="@+id/lblRulePeriod"
+	        android:text="@string/strRuleActPeriod"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp" 
+			android:layout_below="@+id/btnRuleSel"
+			android:layout_alignLeft="@+id/ruleLabel"
+			/>
+	  <RadioGroup
+        android:id="@+id/radioTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblRulePeriod"
+		android:layout_alignLeft="@+id/ruleLabel"
+		android:orientation="horizontal"
+         >
+ 
+        <RadioButton
+            android:id="@+id/exactTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exactly at" 
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:checked="true" 
+            />
+        
+            <RadioButton
+            android:id="@+id/intTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Between" 
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:checked="true"
+             />
+        </RadioGroup>
+        	
+			<TextView android:id="@+id/txtDtFrom"
+	    	android:layout_width="wrap_content" 
+	   		android:layout_height="wrap_content"
+	   		android:layout_below="@+id/radioTime"
+	   		android:text="mm/dd/yyyy"
+			/>
+			
+			<Button android:id="@+id/btnDtFrm"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="From"
+	        android:layout_below="@+id/radioTime"
+	        android:layout_toRightOf="@+id/txtDtFrom"
+	        />
+			
+			<TextView android:id="@+id/txtDtTo"
+	    	android:layout_width="wrap_content" 
+	   		android:layout_height="wrap_content"
+	   		android:layout_below="@+id/radioTime"
+	   		android:layout_marginLeft="10dp" 
+	   		android:layout_toRightOf="@+id/btnDtFrm"
+	   		android:text="mm/dd/yyyy"
+	   		/>
+			
+			<Button android:id="@+id/btntDtTo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="To"
+	        android:layout_below="@+id/radioTime"
+	        android:layout_toRightOf="@+id/txtDtTo"
+	        />
+			  <TextView android:id="@+id/lblFrequency"
+	        android:text="Choose Frequency"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp" 
+			android:layout_below="@+id/btntDtTo"
+			android:layout_alignLeft="@+id/ruleLabel"
+			/>
+			
+			<Button android:id="@+id/btnFreq"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Frequency"
+	        android:layout_below="@+id/lblFrequency"
+	        />
+			<Button android:id="@+id/btnPeriod"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Period"
+	        android:layout_below="@+id/lblFrequency"
+	        android:layout_toRightOf="@+id/btnFreq"
+	        />
+			<Spinner
+   			 android:id="@+id/loc_spinner"
+    		 android:layout_width="wrap_content"
+   			 android:layout_height="wrap_content"
+   			 android:layout_below="@+id/btnPeriod"
+   			  />
+
+			<TextView
+			    android:id="@+id/trigAction"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignLeft="@+id/ruleLabel"
+			    android:layout_below="@+id/loc_spinner"
+			    android:paddingTop="10dp"
+			    android:text="Choose what to trigger" 
+			    />
+				
+			<Spinner
+   			 android:id="@+id/spTrigAction"
+    		 android:layout_width="wrap_content"
+   			 android:layout_height="wrap_content"
+   			 android:layout_below="@+id/trigAction"
+   			  />
+			<Button android:id="@+id/btnSubmit"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="SUBMIT"
+	        android:layout_below="@+id/spTrigAction"
+	        />			
+</RelativeLayout>

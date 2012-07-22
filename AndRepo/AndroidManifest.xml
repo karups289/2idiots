@@ -5,12 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="10" />
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/stryourrule" >
         <activity
-            android:name=".RuleListActivity"
+            android:name=".AppActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +24,6 @@
             android:label="@string/strnewrule" >
 
         </activity>
-        
-
-        <service android:enabled="true" android:name="com.eshiah.exec.MyAppTimeServicevice" />
-
-        
     </application>
 
 </manifest>
