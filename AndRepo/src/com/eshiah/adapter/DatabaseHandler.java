@@ -69,7 +69,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
  
     // Adding new rule
-    void addContact(RulesVO rule) {
+   public void addRule(RulesVO rule) {
         SQLiteDatabase db = this.getWritableDatabase();
  
         ContentValues values = new ContentValues();
@@ -105,7 +105,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
  
     // Getting All Contacts
-    public List<RulesVO> getAllContacts() throws ParseException {
+    public List<RulesVO> getAllRules() throws ParseException {
         List<RulesVO> rulesList = new ArrayList<RulesVO>();
         DateFormat  fromUser = new SimpleDateFormat("dd/MM/yyyy");
         // Select All Query

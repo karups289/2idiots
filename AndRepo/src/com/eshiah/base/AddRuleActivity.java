@@ -3,6 +3,9 @@
  */
 package com.eshiah.base;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.eshiah.adapter.DatabaseHandler;
+import com.eshiah.adapter.RulesVO;
 
 /**
  * @author akaruppaiah
@@ -47,6 +53,7 @@ public class AddRuleActivity extends Activity {
 	private boolean fromDialog =true;
 	private DatePickerDialog.OnDateSetListener mDateSetListener;
 	int itemIndex;
+	private Button btnSubmit;
 	public void onCreate(Bundle savedInstanceState) {
 		
 		//Hardcoding an arraylist now:This arraylist will contain all the rule names which will be loaded from the DB later.
@@ -295,6 +302,37 @@ public class AddRuleActivity extends Activity {
         	    	adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         	    	// Apply the adapter to the spinner
         	    	spinner1.setAdapter(adapter1);
+        	    	
+        	    	DateFormat  fromUser = new SimpleDateFormat("dd/MM/yyyy");
+        	    	int totSeconds = Integer.parseInt(btnPeriod.getText().toString());
+        	    	if(spinner.getSelectedItem().toString().equals("min")){
+        	    		totSeconds=(Integer.parseInt(btnPeriod.getText().toString()))*60;
+        	    	}else if(spinner.getSelectedItem().toString().equals("hrs")){
+        	    		totSeconds=(Integer.parseInt(btnPeriod.getText().toString()))*60*60;
+        	    	}
+        	    	//handler for the submit button
+        	    	btnSubmit= (Button) findViewById(R.id.btnSubmit);
+        	    	final DatabaseHandler dbHandler = new DatabaseHandler(this);
+        	    final RulesVO ruleVO = new RulesVO();
+        	    	ruleVO.setRuleName(txtRulName.getText().toString());
+        	    	ruleVO.setRuleCategory(txtRuleCat.getText().toString());
+        	    	try {
+						ruleVO.setDateFrom(fromUser.parse(txtFrmDtDisplay.getText().toString()));
+						ruleVO.setDateTo(fromUser.parse(txtToDtDisplay.getText().toString()));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+        	    	ruleVO.setDirection(spinner.getSelectedItem().toString());
+        	    	ruleVO.setTrigAction(spinner1.getSelectedItem().toString());
+        	    	ruleVO.setInterval(rbIntTime.hasSelection());
+        	    	ruleVO.setPeriod(totSeconds);
+        	    	btnSubmit.setOnClickListener(new View.OnClickListener() {
+        		        public void onClick(View v) {
+        		            dbHandler.addRule(ruleVO);
+        		            fromDialog=false;
+        		        }
+        		    });
 		         	       
 		}
 	private void updateDisplay() {
@@ -326,6 +364,8 @@ public class AddRuleActivity extends Activity {
 	   }
 	   return null;
 	}
+	
+	
 	
 	//unused function
 	private void alertDialBuilder(CharSequence[] listItems){
