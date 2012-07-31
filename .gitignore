@@ -2,3 +2,7 @@
 /AndRepo/gen/com/*
 /AndRepo/bin/*
 *.properties
+/Eshiah/gen/*
+/Eshiah/bin/*
+*.properties
+
